@@ -1,3 +1,5 @@
+import random
+
 name = input("Please enter your name: ")    #name and age function with input from user that generates a rude output using int and if else statement
 age = int(input("How old are you {0}? ".format(name)))
 
@@ -41,40 +43,20 @@ if found_at is not None:
 else:
     print("{} is not found on the list".format(item_to_find))
 
-answer = 5      #guessing game with if, elif, and else statements
+highest = 1000        #manually set an upper limit and attach it to a variable
+answer = random.randint(1, highest)      #use of random number generator
+# print(answer) #used only for testing
+guess = 0       #initialize to any number entered
+print("Please guess a number between 1 and {}: " .format(highest))
 
-print("Please guess a number between 1 and 10: ")
-guess = int(input())
-
-if guess < answer:
-    print("Your guess is too low")
+while guess != answer:     #while loop to allow for multiple guesses until the guess is correct (equals to the answer variable)
     guess = int(input())
+    if guess == 0:
+        print("Game terminated")
+        break
     if guess == answer:
-        print("Well done, you guessed it.") 
+        print("Congratulations, that guess is correct")
+    elif guess < answer:      #guess is too low prompt 
+        print("Sorry, that guess is too low; please guess higher.")
     else:
-        print("Sorry, you didn't guess it.")
-elif guess == 5:
-    print("Congrats, that is correct")
-else:
-    print("Sorry, that guess is too high")
-    guess = int(input())
-    if guess == answer:
-        print("Well done, you guessed it.")
-    else:
-        print("Sorry, you didn't guess it.")
-          
-
-if guess == answer:     #guess equals answer 
-    print("Congratulations, that guess is correct")
-else:           #all other possibilities
-    if guess < answer:      #guess is too low prompt
-        print("Sorry, that guess is too low")
-    else:
-        print("Please guess lower")     #guess is too high prompt
-    guess = int(input())        #offers a second chance to guess
-    if guess == answer:     #prompt is second guess is correct
-        print("Well done, you guessed it.")
-    else:
-        print("Sorry, you didn't guess it.")    #prompt if second guess is still wrong
-
-
+        print("Sorry, that guess is too high; please guess lower.")

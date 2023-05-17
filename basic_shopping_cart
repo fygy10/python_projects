@@ -1,0 +1,23 @@
+choice = "-"
+computer_parts = []
+available_parts = ["Computer", "Mouse", "Monitor", "Cameras", "Keyboard", "HDMI Cable", "External Hard Drive"]
+
+# valid_choices = [str(i) for i in range(1, len(available_parts) + 1)]      #lists choices out in string format
+valid_choices = []
+for i in range(len(available_parts) + 1):       #takes all parts available
+    valid_choices.append(str(i))        #parts in string format so customer enters correct input
+print(valid_choices)
+while choice != '0':        #as long as '0' isn't entered, the while loop will execute as follows
+    if choice in valid_choices:       #if a valid choice is entered (as it was created above)
+        print("Adding {}".format(choice))
+        index = int(choice) - 1     #choice is going to tbe the index of the list minus one bc the computer indexes from 0
+        chosen_part = available_parts[index]    #the chosen part is the indexed from the list
+        computer_parts.append(chosen_part)      #the list is now updated with the chosen part
+    else:
+        print("\nPlease configure your computer package with the parts from the following list: ")
+        for number, part in enumerate(available_parts):
+            print("{0}: {1}".format(number + 1, part))      #use of enumerate funciton; faster than indexing each unordered part
+            # print("{0}: {1}".format(available_parts.index(part) + 1, part))     #lists out available parts in a list format with indexing
+
+    choice = input()
+print(computer_parts)
