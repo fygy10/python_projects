@@ -1,3 +1,5 @@
+print("\nWelcome to the Prime Number Finder.\n")
+
 min_range = input("Please enter a minimum range of integers: ")
 min_range = int(min_range)
 max_range = input("Please enter a maximum range of integers: ")
