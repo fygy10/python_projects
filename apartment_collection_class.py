@@ -6,7 +6,7 @@ class House:
 
     def __repr__(self):
         return f"The home is located on {self.street} in {self.town} at a price of ${self.price}"
-
+    
 class Condo (House):
     def __init__(self, street, town, price, neighborhood):
         super().__init__(street, town, price)

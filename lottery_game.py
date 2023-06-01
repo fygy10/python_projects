@@ -29,3 +29,14 @@ print(f"Player {name_one} has {len(numbers_one)} numbers matched.")
 name_two = players[1]["name"]
 numbers_two = player_two_numbers.intersection(lottery_numbers)
 print(f"Player {name_two} has {len(numbers_two)} numbers matched.")
+
+while True:
+    if numbers_one > numbers_two:
+        print(f"Player {name_one} wins")
+        break
+    elif numbers_two > numbers_one:
+        print(f"Player {name_two} wins")
+        break
+    else:
+        print("It is a tie")
+        break
