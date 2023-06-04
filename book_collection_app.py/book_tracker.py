@@ -1,9 +1,10 @@
 #tracking books read and recording them
-import database_books
-# import database_books_json  #using json for database; need to change when function are calling from
+import database_books_sql_cm
+# import database_books_json  #using json for database
+# import database_books_csv #using csv for database
+# import database_books_sql #using sql for database (without context manager)
 
-
-user_menu = """
+user_menu = """ 
 
 Welcome to the Boostore App!\n
 Enter an option from the list below:
@@ -19,35 +20,22 @@ Your choice:
 def add_book():
     name = input("What is the name of the book? ")
     author = input("What is the author of the book? ")
-    database_books.add_book(name, author)
-    # database_books_json.add_book(name, author)
-
+    database_books_sql_cm.add_book(name, author)
 
 def list_books():
-    # books = database_books_json.get_all_books()
-    books = database_books.get_all_books()
+    books = database_books_sql_cm.get_all_books()
     for book in books:
-        read = 'Yes' if book['read'] == '1' else 'No'   #csv databse line
-        # read = 'Yes' if book['read'] else 'No'    #this line if using json database instead of csv
+        read = 'Yes' if book['read'] else 'No'   
+        # read = 'Yes' if book['read'] == '1' else 'No'    #this line if using csv database
         print(f"{book['name']} by {book['author']}; Already read?: {read}")
-
-    # for book in database_books.books:
-    #     read = 'Yes' if book['read'] else 'No'
-    #     print(f"{book['name']} by {book['author']}; Read Status: {read}")
 
 def delete_book():
     name = input("Which book do you want to delete? ")
-    database_books.delete_book(name) 
-    # database_books_json.delete_book(name) 
+    database_books_sql_cm.delete_book(name) 
 
 def read_book():
     name = input("What book did you read? ")
-    database_books.mark_book_read(name)
-    # database_books_json.mark_book_read(name)
-
-    # for book in database_books.books:     #can add author for more granularity if two books with the same title
-    #     if book['name'] == name:
-    #         book['read'] = True
+    database_books_sql_cm.mark_book_read(name)
 
 user_options = {
 
@@ -59,8 +47,7 @@ user_options = {
 }
 
 def menu(): 
-    # database_books_json.create_book_table()  #list books when empty database
-    database_books.create_book_table()  #list books when empty database
+    database_books_sql_cm.create_book_table()  #list books when empty database
     user_input = input(user_menu)
     while user_input != 'exit':
         if user_input in user_options:
